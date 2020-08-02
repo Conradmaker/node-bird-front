@@ -1,0 +1,24 @@
+{
+  "name": "nodebird",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "YooWonGeun",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "yarn build"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.5.1",
+    "next": "^9.5.0",
+    "next-redux-wrapper": "^6.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-slick": "^0.27.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "styled-components": "^5.1.1"
+  }
+}
