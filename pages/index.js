@@ -8,7 +8,6 @@ export default function index() {
   //redux에서 가져와주기
   const { isloggedIn } = useSelector((state) => state.user);
   const { mainPosts } = useSelector((state) => state.post);
-  console.log(isloggedIn);
 
   return (
     <>

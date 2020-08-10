@@ -36,7 +36,7 @@ export default function PostForm() {
         </Button>
       </div>
       <div>
-        {imagePaths.map((y) => (
+        {imagePaths.map((v) => (
           <div key={v} style={{ display: "inline-block" }}>
             <img src={v} style={{ width: "200px" }} alt={v} />
             <div>
