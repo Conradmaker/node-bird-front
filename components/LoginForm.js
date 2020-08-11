@@ -15,21 +15,27 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function LoginForm({ setIsLoggedIn }) {
-  const { isloggingIn } = useSelector((state) => state.user);
-  const [id, onChangeId] = useInput("");
+  const { logInLoading } = useSelector((state) => state.user);
+  const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const dispatch = useDispatch();
   const onSubmitForm = useCallback(() => {
-    console.log(id, password);
-    dispatch(logInRequestAction(id, password));
-  }, [id, password]);
+    console.log(email, password);
+    dispatch(logInRequestAction(email, password));
+  }, [email, password]);
 
   return (
     <FormWrapper onFinish={onSubmitForm}>
       <div>
-        <label htmlFor="user-id">아이디</label>
+        <label htmlFor="user-email">이메일</label>
         <br />
-        <Input name="user-id" value={id} onChange={onChangeId} required />
+        <Input
+          name="user-email"
+          value={email}
+          onChange={onChangeEmail}
+          type={email}
+          required
+        />
       </div>
       <div>
         <label htmlFor="user-password">비밀번호</label>
@@ -43,7 +49,7 @@ export default function LoginForm({ setIsLoggedIn }) {
         />
       </div>
       <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={isloggingIn}>
+        <Button type="primary" htmlType="submit" loading={logInLoading}>
           로그인
         </Button>
 

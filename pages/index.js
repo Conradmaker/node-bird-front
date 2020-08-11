@@ -6,13 +6,13 @@ import PostCard from "../components/PostCard";
 
 export default function index() {
   //redux에서 가져와주기
-  const { isloggedIn } = useSelector((state) => state.user);
+  const { logInDone } = useSelector((state) => state.user);
   const { mainPosts } = useSelector((state) => state.post);
 
   return (
     <>
       <AppLayout>
-        {isloggedIn && <PostForm />}
+        {logInDone && <PostForm />}
         {mainPosts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}

@@ -1,17 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Input, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import useInput from "../hooks/useInput";
 import { addPost } from "../reducers/post";
 
 export default function PostForm() {
-  const { imagePaths } = useSelector((state) => state.post);
+  const { imagePaths, addPostDone } = useSelector((state) => state.post);
   const [text, onChangeText, setText] = useInput(text);
+
+  useEffect(() => {
+    if (addPostDone) {
+      setText("");
+    }
+  }, [addPostDone]);
   const dispatch = useDispatch();
   const imageInput = useRef();
   const onSubmit = () => {
-    dispatch(addPost);
-    setText("");
+    dispatch(addPost(text));
   };
   const onClickImageUpload = () => {
     imageInput.current.click(); //파일 업로드

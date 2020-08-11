@@ -5,7 +5,7 @@ import { logOutRequestAction } from "../reducers/user";
 
 export default function UserProfile({ setIsLoggedIn }) {
   const dispatch = useDispatch();
-  const { me, isloggingOut } = useSelector((state) => state.user);
+  const { me, logOutLoading } = useSelector((state) => state.user);
   const onLogOut = useCallback(() => {
     dispatch(logOutRequestAction());
   }, []);
@@ -15,15 +15,18 @@ export default function UserProfile({ setIsLoggedIn }) {
         //배열이기때문에 키
         <div key="twit">
           짹짹
-          <br />0
+          <br />
+          {me.Posts.length}
         </div>,
         <div key="following">
           팔로잉
-          <br />0
+          <br />
+          {me.Followings.length}
         </div>,
         <div key="follower">
           팔로워
-          <br />0
+          <br />
+          {me.Followers.length}
         </div>,
       ]}
     >
@@ -31,7 +34,7 @@ export default function UserProfile({ setIsLoggedIn }) {
         avatar={<Avatar>{me.nickname[0]}</Avatar>}
         title={me.nickname}
       />
-      <Button onClick={onLogOut} loading={isloggingOut}>
+      <Button onClick={onLogOut} loading={logOutLoading}>
         로그아웃
       </Button>
     </Card>
