@@ -3,8 +3,8 @@ import { Form, Input, Button, Checkbox } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { logIn } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { logInRequestAction } from "../reducers/user";
 
 const FormWrapper = styled(Form)`
   padding: 20px;
@@ -15,12 +15,13 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function LoginForm({ setIsLoggedIn }) {
+  const { isloggingIn } = useSelector((state) => state.user);
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
   const dispatch = useDispatch();
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    dispatch(logIn());
+    dispatch(logInRequestAction(id, password));
   }, [id, password]);
 
   return (
@@ -42,7 +43,7 @@ export default function LoginForm({ setIsLoggedIn }) {
         />
       </div>
       <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={false}>
+        <Button type="primary" htmlType="submit" loading={isloggingIn}>
           로그인
         </Button>
 
