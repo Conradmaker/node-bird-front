@@ -48,6 +48,14 @@ export const logInRequestAction = (data) => ({ type: LOG_IN_REQUEST, data });
 export const logOutRequestAction = () => ({ type: LOG_OUT_REQUEST });
 
 export const initialState = {
+  followDone: false,
+  followError: null,
+  followLoading: false,
+
+  unfollowDone: false,
+  unfollowError: null,
+  unfollowLoading: false,
+
   logInDone: false,
   logInError: null,
   logInLoading: false,
@@ -72,6 +80,40 @@ export const initialState = {
 export default function reducer(state = initialState, action) {
   return produce(state, (draft) => {
     switch (action.type) {
+      case UNFOLLOW_REQUEST:
+        draft.unfollowLoading = true;
+        draft.unfollowDone = false;
+        draft.unfollowError = null;
+        break;
+      case UNFOLLOW_SUCCESS:
+        draft.unfollowLoading = false;
+        draft.unfollowDone = true;
+        draft.unfollowError = null;
+        draft.me.Followings.filter((v) => v.id !== action.data);
+        break;
+      case UNFOLLOW_FAILURE:
+        draft.unfollowError = action.error;
+        draft.unfollowLoading + false;
+        draft.unfollowDone = false;
+        break;
+
+      case FOLLOW_REQUEST:
+        draft.followLoading = true;
+        draft.followDone = false;
+        draft.followError = null;
+        break;
+      case FOLLOW_SUCCESS:
+        draft.followLoading = false;
+        draft.followDone = true;
+        draft.followError = null;
+        draft.me.Followings.push({ id: action.data });
+        break;
+      case FOLLOW_FAILURE:
+        draft.followError = action.error;
+        draft.followLoading + false;
+        draft.followDone = false;
+        break;
+
       case LOG_IN_REQUEST:
         draft.logInLoading = true;
         draft.logInDone = false;
@@ -88,8 +130,8 @@ export default function reducer(state = initialState, action) {
         draft.logInLoading + false;
         draft.logInDone = false;
         break;
+
       case LOG_OUT_REQUEST:
-      case LOG_IN_REQUEST:
         draft.logOutLoading = true;
         draft.logOutDone = false;
         draft.logOutError = null;
