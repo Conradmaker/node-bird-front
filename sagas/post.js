@@ -1,5 +1,9 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { all, fork, takeEvery, call, put } from "redux-saga/effects";
+=======
+import { all, fork, takeEvery, call, put, delay } from "redux-saga/effects";
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 import {
   ADD_COMMENT_FAILURE,
   ADD_COMMENT_REQUEST,
@@ -7,7 +11,16 @@ import {
   ADD_POST_REQUEST,
   ADD_POST_FAILURE,
   ADD_POST_SUCCESS,
+<<<<<<< HEAD
 } from "../reducers/post";
+=======
+  REMOVE_POST_FAILURE,
+  REMOVE_POST_SUCCESS,
+  REMOVE_POST_REQUEST,
+} from "../reducers/post";
+import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from "../reducers/user";
+import shortid from "shortid";
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 
 function addPostAPI(data) {
   const response = axios.post("/api/post");
@@ -61,5 +74,9 @@ function* watchAddComment() {
 }
 
 export default function* postSaga() {
+<<<<<<< HEAD
   yield all([fork(watchAddPost), fork(watchAddComment)]);
+=======
+  yield all([fork(watchAddComment), fork(watchAddPost), fork(watchRemovePost)]);
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 }

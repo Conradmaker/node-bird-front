@@ -48,6 +48,7 @@ export const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
+<<<<<<< HEAD
   switch (action.type) {
     case LOG_IN_REQUEST:
       return {
@@ -117,4 +118,88 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
+=======
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case LOG_IN_REQUEST:
+        draft.logInLoading = true;
+        draft.logInDone = false;
+        draft.logInError = null;
+        break;
+      case LOG_IN_SUCCESS:
+        draft.logInLoading = false;
+        draft.logInDone = true;
+        draft.logInError = null;
+        draft.me = dummyUser(action.data);
+        break;
+      case LOG_IN_FAILURE:
+        draft.logInError = action.error;
+        draft.logInLoading + false;
+        draft.logInDone = false;
+        break;
+      case LOG_OUT_REQUEST:
+      case LOG_IN_REQUEST:
+        draft.logOutLoading = true;
+        draft.logOutDone = false;
+        draft.logOutError = null;
+        break;
+      case LOG_OUT_SUCCESS:
+        draft.logOutDone = true;
+        draft.logOutLoading = false;
+        draft.logOutError = null;
+        draft.me = null;
+        break;
+      case LOG_OUT_FAILURE:
+        draft.logOutError = action.error;
+        draft.logOutLoading = false;
+        draft.logOutDone = false;
+        break;
+      case SIGN_UP_REQUEST:
+        draft.signUpLoading = true;
+        draft.signUpDone = false;
+        draft.signUpError = null;
+        break;
+      case SIGN_UP_SUCCESS:
+        draft.signUpDone = true;
+        draft.signUpLoading = false;
+        draft.signUpError = null;
+        break;
+      case SIGN_UP_FAILURE:
+        draft.signUpDone = false;
+        draft.signUpLoading = false;
+        draft.signUpError = action.error;
+        break;
+      case CHANGE_NICKNAME_REQUEST:
+        draft.changeNickNameLoading = true;
+        draft.changeNickNameDone = false;
+        draft.changeNickNameError = null;
+        break;
+      case CHANGE_NICKNAME_SUCCESS:
+        draft.changeNickNameDone = true;
+        draft.changeNickNameLoading = false;
+        draft.changeNickNameError = null;
+        break;
+      case CHANGE_NICKNAME_FAILURE:
+        draft.changeNickNameDone = false;
+        draft.changeNickNameLoading = false;
+        draft.changeNickNameError = action.error;
+        break;
+      case ADD_POST_TO_ME:
+        draft.me.Posts.unshift({ id: action.data });
+        break;
+      case REMOVE_POST_OF_ME:
+        draft.me.Posts = draft.me.Posts.filter((y) => y.id !== action.data);
+        break;
+      // return {
+      //   ...state,
+      //   me: {
+      //     ...state.me,
+      //     Posts: state.me.Posts.filter((y) => y.id !== action.data),
+      //   },
+      // };
+      default:
+        break;
+    }
+  });
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 }

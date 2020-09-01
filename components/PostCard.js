@@ -13,6 +13,10 @@ import { useSelector } from "react-redux";
 import PostImages from "./PostImages";
 import CommentForm from "./CommentForm";
 import PostCardContent from "./PostCardContent";
+<<<<<<< HEAD
+=======
+import { REMOVE_POST_REQUEST } from "../reducers/post";
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 //14분 21초
 export default function PostCard({ post }) {
   const id = useSelector((state) => state.user.me && state.user.me.id);
