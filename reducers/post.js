@@ -1,3 +1,5 @@
+import produce from "immer";
+
 export const initialState = {
   mainPosts: [
     {
