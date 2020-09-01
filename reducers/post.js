@@ -5,10 +5,13 @@ export const initialState = {
     {
       id: 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
       User: {
         id: 1,
         nickname: "Conrad",
 =======
+=======
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
       User: {
         id: 1,
         nickname: "Conrad",
@@ -68,6 +71,9 @@ initialState.mainPosts = initialState.mainPosts.concat(
       User: {
         id: shortId.generate(), //shortid 사용
         nickname: faker.name.findName(), //faker사용
+<<<<<<< HEAD
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
+=======
 >>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
       },
       content: "첫번째게시글 #sssss",
@@ -89,6 +95,7 @@ initialState.mainPosts = initialState.mainPosts.concat(
         {
           User: {
 <<<<<<< HEAD
+<<<<<<< HEAD
             nickname: "nero",
           },
           content: "와우",
@@ -97,6 +104,8 @@ initialState.mainPosts = initialState.mainPosts.concat(
           User: {
             nickname: "hero",
 =======
+=======
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
             id: shortid.generate(),
             nickname: faker.name.findName(),
 >>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
@@ -104,6 +113,7 @@ initialState.mainPosts = initialState.mainPosts.concat(
           content: "오아아아",
         },
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
     },
   ],
@@ -116,6 +126,10 @@ initialState.mainPosts = initialState.mainPosts.concat(
   addCommentDone: false,
   addCommentError: null,
 };
+=======
+    }))
+);
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 =======
     }))
 );

@@ -16,6 +16,9 @@ import PostCardContent from "./PostCardContent";
 <<<<<<< HEAD
 =======
 import { REMOVE_POST_REQUEST } from "../reducers/post";
+<<<<<<< HEAD
+>>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
+=======
 >>>>>>> parent of b015e22... 0.2.0 팔로우 & 언팔기능 추가, 무한스크롤 적용
 //14분 21초
 export default function PostCard({ post }) {
