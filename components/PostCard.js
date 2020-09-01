@@ -9,13 +9,17 @@ import {
   EllipsisOutlined,
 } from "@ant-design/icons";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PostImages from "./PostImages";
 import CommentForm from "./CommentForm";
 import PostCardContent from "./PostCardContent";
+import { REMOVE_POST_REQUEST } from "../reducers/post";
+import FollowButton from "./FollowButton";
 //14분 21초
 export default function PostCard({ post }) {
+  const { removePostLoading } = useSelector((state) => state.post);
   const id = useSelector((state) => state.user.me && state.user.me.id);
+  const dispatch = useDispatch();
   // const id = useSelector((state) => state.user.me?.id); //옵셔널 체이닝
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -24,6 +28,12 @@ export default function PostCard({ post }) {
   };
   const onToggleComment = () => {
     setCommentFormOpened(!commentFormOpened);
+  };
+  const onRemovePost = () => {
+    dispatch({
+      type: REMOVE_POST_REQUEST,
+      data: post.id,
+    });
   };
   return (
     <div style={{ marginBottom: 20 }}>
@@ -45,7 +55,13 @@ export default function PostCard({ post }) {
                 {id && post.User.id === id ? (
                   <>
                     <Button>수정</Button>
-                    <Button type="danger">삭제</Button>
+                    <Button
+                      type="danger"
+                      onClick={onRemovePost}
+                      loading={removePostLoading}
+                    >
+                      삭제
+                    </Button>
                   </>
                 ) : (
                   <Button>신고</Button>
@@ -56,6 +72,7 @@ export default function PostCard({ post }) {
             <EllipsisOutlined />
           </Popover>,
         ]}
+        extra={id && <FollowButton post={post} />}
       >
         <Card.Meta
           avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
